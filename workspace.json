@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "transcoder": "apps/transcoder",
+    "transcoder-e2e": "apps/transcoder-e2e"
+  }
+}
