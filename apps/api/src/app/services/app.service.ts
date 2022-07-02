@@ -21,10 +21,13 @@ export class AppService {
     file: Express.Multer.File;
     resolution: Resolution;
   }) {
-    if (!(file && file.mimetype) || file.mimetype.split('/')[0] != 'video') {
-      // remove file if is not a video
+    const uploadedFileIsPresent = file && file.mimetype;
+    const uploadedFileIsVideo =
+      uploadedFileIsPresent && file.mimetype.split('/')[0] === 'video';
+
+    if (!uploadedFileIsPresent || !uploadedFileIsVideo) {
       await removeUploadedFileIfExists(file.filename);
-      throw BadRequestException.create({ message: 'File is not a video' });
+      throw BadRequestException.create({ message: 'File is not a video.' });
     }
 
     const job = await this.videoQueue.add(

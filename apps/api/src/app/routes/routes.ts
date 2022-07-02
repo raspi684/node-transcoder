@@ -14,8 +14,8 @@ const appRoutes = Router();
 
 appRoutes.post(
   '/video',
-  validationMiddleware(uploadVideoValidationSchema, 'body'),
   uploadFiles.single('video'),
+  validationMiddleware(uploadVideoValidationSchema, 'body'),
   AppController.uploadVideo
 );
 appRoutes.get(

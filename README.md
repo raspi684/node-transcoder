@@ -1,12 +1,19 @@
 
 
-# Transcoder
+# Node (video) Transcoder
 
 This project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
 🔎 **Smart, Fast and Extensible Build System**
+
+# Todo
+- [x] Basic file uploading and transcoding
+- [ ] S3 storage
+- [ ] ffmpeg instead of handbrake-cli
+- [ ] docker image
+- [ ] ytdl for downloading and converting videos on the fly from external services
 
 ## Adding capabilities to your workspace
 
@@ -48,8 +55,13 @@ Run `nx g @nrwl/react:lib my-lib` to generate a library.
 Libraries are shareable across libraries and applications. They can be imported from `@transcoder/mylib`.
 
 ## Development server
-
+Before starting a backend:
+* `sudo add-apt-repository ppa:stebbins/handbrake-releases && sudo apt-get update`
+* `sudo apt-get install handbrake-cli`
+* run Redis (ex. `docker run --rm --name redis -p 6379:6379 redis:alpine`)
+  
 Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `nx serve api` for an api. It's available on http://localhost:3333 and http://localhost:4200/api
 
 ## Code scaffolding
 

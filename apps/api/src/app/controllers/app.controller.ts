@@ -12,7 +12,7 @@ export class AppController {
 
     const videoPath = await appService.getVideoPathFromJob({ jobId });
 
-    res.sendFile(videoPath);
+    res.download(videoPath);
   }
 
   static async getJobInfo(req: Request, res: Response) {
