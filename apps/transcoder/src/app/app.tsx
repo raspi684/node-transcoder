@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Message } from '@transcoder/api-interfaces';
+import { ChakraProvider, Heading, Center, Flex, Box } from '@chakra-ui/react';
+
+import Form from './form';
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
-
-  useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
-  }, []);
-
   return (
-    <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to transcoder!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-          alt="Nx - Smart, Fast and Extensible Build System"
-        />
-      </div>
-      <div>{m.message}</div>
-    </>
+    <ChakraProvider>
+      <Flex bg="gray.100" align="center" justify="center" h="100vh">
+        <Box bg="white" p={6} rounded="md">
+          <Center marginBottom={10}>
+            <Heading>Welcome to transcoder!</Heading>
+          </Center>
+
+          <Form />
+        </Box>
+      </Flex>
+    </ChakraProvider>
   );
 };
 

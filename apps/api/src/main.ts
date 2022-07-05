@@ -1,16 +1,10 @@
-import * as express from 'express';
-import { Message } from '@transcoder/api-interfaces';
+import 'reflect-metadata';
+import VideoQueueWorker from './app/workers/video-queue.worker';
+import app from './server';
 
-const app = express();
-
-const greeting: Message = { message: 'Welcome to api!' };
-
-app.get('/api', (req, res) => {
-  res.send(greeting);
-});
+VideoQueueWorker.start();
 
 const port = process.env.port || 3333;
-const server = app.listen(port, () => {
+app.listen(port, () => {
   console.log('Listening at http://localhost:' + port + '/api');
 });
-server.on('error', console.error);
